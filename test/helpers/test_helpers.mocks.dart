@@ -10,6 +10,9 @@ import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
 import 'package:stacked_services/stacked_services.dart' as _i2;
+import 'package:task_manager_app/model/task.dart' as _i8;
+import 'package:task_manager_app/services/notification_service.dart' as _i9;
+import 'package:task_manager_app/services/task_service.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -682,4 +685,72 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [TaskService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTaskService extends _i1.Mock implements _i7.TaskService {
+  @override
+  List<_i8.Task> getTasks() => (super.noSuchMethod(
+        Invocation.method(
+          #getTasks,
+          [],
+        ),
+        returnValue: <_i8.Task>[],
+        returnValueForMissingStub: <_i8.Task>[],
+      ) as List<_i8.Task>);
+
+  @override
+  void addTask(_i8.Task? task) => super.noSuchMethod(
+        Invocation.method(
+          #addTask,
+          [task],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateTask(_i8.Task? task) => super.noSuchMethod(
+        Invocation.method(
+          #updateTask,
+          [task],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void deleteTask(_i8.Task? task) => super.noSuchMethod(
+        Invocation.method(
+          #deleteTask,
+          [task],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [NotificationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNotificationService extends _i1.Mock
+    implements _i9.NotificationService {
+  @override
+  _i5.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> scheduleNotification(_i8.Task? task) => (super.noSuchMethod(
+        Invocation.method(
+          #scheduleNotification,
+          [task],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
