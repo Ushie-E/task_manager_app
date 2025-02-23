@@ -1,6 +1,10 @@
 # task_manager_app
 
-A new Flutter project.
+## Installation instructions
+
+- How to run the app (flutter pub get && flutter run)
+
+- Explanation of Hive setup and notification handling
 
 ## Golden Tests
 
