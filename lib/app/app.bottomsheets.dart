@@ -6,10 +6,12 @@
 
 import 'package:stacked_services/stacked_services.dart';
 
-import '../ui/bottom_sheets/alert/alert_sheet.dart';
 import 'app.locator.dart';
+import '../ui/bottom_sheets/alert/alert_sheet.dart';
 
-enum BottomSheetType { alert }
+enum BottomSheetType {
+  alert,
+}
 
 void setupBottomSheetUi() {
   final bottomsheetService = locator<BottomSheetService>();

@@ -6,10 +6,12 @@
 
 import 'package:stacked_services/stacked_services.dart';
 
-import '../ui/dialogs/error/error_dialog.dart';
 import 'app.locator.dart';
+import '../ui/dialogs/error/error_dialog.dart';
 
-enum DialogType { error }
+enum DialogType {
+  error,
+}
 
 void setupDialogUi() {
   final dialogService = locator<DialogService>();
