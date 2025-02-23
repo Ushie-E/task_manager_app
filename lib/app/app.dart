@@ -2,6 +2,8 @@ import 'package:task_manager_app/ui/views/home/home_view.dart';
 import 'package:task_manager_app/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:task_manager_app/ui/bottom_sheets/alert/alert_sheet.dart';
+import 'package:task_manager_app/ui/dialogs/error/error_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -17,10 +19,12 @@ import 'package:stacked_services/stacked_services.dart';
     // @stacked-service
   ],
   bottomsheets: [
-    // @stacked-bottom-sheet
+    StackedBottomsheet(classType: AlertSheet),
+// @stacked-bottom-sheet
   ],
   dialogs: [
-    // @stacked-dialog
+    StackedDialog(classType: ErrorDialog),
+// @stacked-dialog
   ],
 )
 class App {}
