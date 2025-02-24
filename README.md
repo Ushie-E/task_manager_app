@@ -1,4 +1,4 @@
-# task_manager_app
+# Task_Manager_App
 
 ## Installation instructions
 
