@@ -8,7 +8,8 @@
 import 'package:flutter/material.dart' as _i5;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i6;
+import 'package:stacked_services/stacked_services.dart' as _i7;
+import 'package:task_manager_app/model/task.dart' as _i6;
 import 'package:task_manager_app/ui/views/startup/startup_view.dart' as _i2;
 import 'package:task_manager_app/ui/views/task_forms/task_forms_view.dart'
     as _i4;
@@ -19,15 +20,13 @@ class Routes {
 
   static const taskListView = '/task-list-view';
 
-  static const _taskFormsView = ':task';
+  static const taskFormsView = '/task-forms-view';
 
   static const all = <String>{
     startupView,
     taskListView,
-    _taskFormsView,
+    taskFormsView,
   };
-
-  static String taskFormsView({required dynamic task}) => '$task';
 }
 
 class StackedRouter extends _i1.RouterBase {
@@ -68,7 +67,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<TaskFormsViewArguments>(nullOk: false);
       return _i5.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            _i4.TaskFormsView(data.pathParams['task'].value(), key: args.key),
+            _i4.TaskFormsView(args.task, key: args.key),
         settings: data,
         transitionsBuilder: data.transition ??
             (context, animation, secondaryAnimation, child) {
@@ -91,7 +90,7 @@ class TaskFormsViewArguments {
     this.key,
   });
 
-  final String task;
+  final _i6.Task task;
 
   final _i5.Key? key;
 
@@ -112,7 +111,7 @@ class TaskFormsViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i6.NavigationService {
+extension NavigatorStateExtension on _i7.NavigationService {
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -142,6 +141,7 @@ extension NavigatorStateExtension on _i6.NavigationService {
   }
 
   Future<dynamic> navigateToTaskFormsView({
+    required _i6.Task task,
     _i5.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -186,6 +186,7 @@ extension NavigatorStateExtension on _i6.NavigationService {
   }
 
   Future<dynamic> replaceWithTaskFormsView({
+    required _i6.Task task,
     _i5.Key? key,
     int? routerId,
     bool preventDuplicates = true,

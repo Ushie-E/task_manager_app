@@ -1,3 +1,4 @@
+import 'package:stacked/stacked.dart';
 import 'package:task_manager_app/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -12,10 +13,13 @@ import 'package:task_manager_app/ui/views/task_forms/task_forms_view.dart';
 @StackedApp(
   routes: [
     AdaptiveRoute(page: StartupView, initial: true),
-    CustomRoute(page: TaskListView),
+    CustomRoute(
+      page: TaskListView,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
     CustomRoute(
       page: TaskFormsView,
-      path: ':task',
+      transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
 // @stacked-route
   ],

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
+import 'package:task_manager_app/model/task.dart';
 
 import 'task_forms_viewmodel.dart';
 
 class TaskFormsView extends StackedView<TaskFormsViewModel> {
-  const TaskFormsView(@pathParam this.task, {super.key});
+  const TaskFormsView(this.task, {super.key});
 
-  final String task;
+  final Task task;
 
   @override
   Widget builder(
