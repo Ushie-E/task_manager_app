@@ -36,7 +36,7 @@ class TaskListViewModel extends BaseViewModel {
     await init();
   }
 
-  void navigateToTaskForm({Task task}) {
+  void navigateToTaskForm(Task task) {
     _navigationService.navigateToTaskFormsView(task: task);
   }
 }

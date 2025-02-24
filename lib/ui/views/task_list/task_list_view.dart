@@ -33,7 +33,7 @@ class TaskListView extends StackedView<TaskListViewModel> {
                   },
                 ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => viewModel.navigateToTaskForm(viewModel.tasks[0]),
+        onPressed: () => viewModel.navigateToTaskForm,
         child: const Icon(Icons.add),
       ),
     );
