@@ -692,6 +692,16 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 /// See the documentation for Mockito's code generation for more information.
 class MockTaskService extends _i1.Mock implements _i7.TaskService {
   @override
+  _i5.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
   List<_i8.Task> getTasks() => (super.noSuchMethod(
         Invocation.method(
           #getTasks,
@@ -702,31 +712,44 @@ class MockTaskService extends _i1.Mock implements _i7.TaskService {
       ) as List<_i8.Task>);
 
   @override
-  void addTask(_i8.Task? task) => super.noSuchMethod(
+  _i5.Future<void> addTask(_i8.Task? task) => (super.noSuchMethod(
         Invocation.method(
           #addTask,
           [task],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  void updateTask(_i8.Task? task) => super.noSuchMethod(
+  _i5.Future<void> updateTask(_i8.Task? task) => (super.noSuchMethod(
         Invocation.method(
           #updateTask,
           [task],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  void deleteTask(_i8.Task? task) => super.noSuchMethod(
+  _i5.Future<void> deleteTask(String? taskId) => (super.noSuchMethod(
         Invocation.method(
           #deleteTask,
-          [task],
+          [taskId],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> toggleTaskCompletion(String? taskId) => (super.noSuchMethod(
+        Invocation.method(
+          #toggleTaskCompletion,
+          [taskId],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [NotificationService].

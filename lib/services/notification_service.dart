@@ -1,4 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../model/task.dart';
@@ -8,6 +9,8 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
+    tz.initializeTimeZones();
+
     const AndroidInitializationSettings androidSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
@@ -15,9 +18,19 @@ class NotificationService {
         InitializationSettings(android: androidSettings);
 
     await _flutterLocalNotificationsPlugin.initialize(settings);
+
+    await _flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestPermission();
   }
 
   Future<void> scheduleNotification(Task task) async {
+    final DateTime scheduledTime =
+        task.timestamp.add(const Duration(minutes: 5));
+
+    if (!scheduledTime.isAfter(DateTime.now())) return;
+
     const AndroidNotificationDetails androidDetails =
         AndroidNotificationDetails(
       'task_channel',
@@ -29,20 +42,15 @@ class NotificationService {
     const NotificationDetails details =
         NotificationDetails(android: androidDetails);
 
-    final DateTime scheduledTime =
-        task.timestamp.add(const Duration(minutes: 5));
-
-    if (scheduledTime.isAfter(DateTime.now())) {
-      await _flutterLocalNotificationsPlugin.zonedSchedule(
-        task.hashCode,
-        'Task Reminder',
-        task.title,
-        tz.TZDateTime.from(scheduledTime, tz.local),
-        details,
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-      );
-    }
+    await _flutterLocalNotificationsPlugin.zonedSchedule(
+      task.hashCode,
+      'Task Reminder',
+      task.title,
+      tz.TZDateTime.from(scheduledTime, tz.local),
+      details,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
   }
 }
