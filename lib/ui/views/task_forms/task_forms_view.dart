@@ -1,36 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:task_manager_app/model/task.dart';
-
-import 'task_forms_viewmodel.dart';
+import 'package:task_manager_app/ui/views/task_forms/task_forms_viewmodel.dart';
 
 class TaskFormsView extends StackedView<TaskFormsViewModel> {
-  const TaskFormsView(this.task, {super.key});
+  final Task? task;
 
-  final Task task;
+  const TaskFormsView({super.key, this.task});
 
   @override
   Widget builder(
-    BuildContext context,
-    TaskFormsViewModel viewModel,
-    Widget? child,
-  ) {
+      BuildContext context, TaskFormsViewModel viewModel, Widget? child) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Task Form")),
+      appBar: AppBar(title: Text(task == null ? 'New Task' : 'Edit Task')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
-                controller: viewModel.titleController,
-                decoration: const InputDecoration(labelText: "Title")),
+              controller: viewModel.titleController,
+              decoration: const InputDecoration(labelText: 'Title'),
+            ),
             TextField(
-                controller: viewModel.descriptionController,
-                decoration: const InputDecoration(labelText: "Description")),
+              controller: viewModel.descriptionController,
+              decoration: const InputDecoration(labelText: 'Description'),
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => viewModel.saveTask(),
-              child: const Text("Save Task"),
+              onPressed: viewModel.saveTask,
+              child: const Text('Save Task'),
             ),
           ],
         ),

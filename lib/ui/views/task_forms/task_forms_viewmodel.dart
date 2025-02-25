@@ -1,40 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:task_manager_app/model/task.dart';
+import 'package:uuid/uuid.dart';
 import 'package:task_manager_app/app/app.locator.dart';
-import 'package:task_manager_app/services/task_service.dart';
-import '../../../model/task.dart';
 
 class TaskFormsViewModel extends BaseViewModel {
-  final _taskService = locator<TaskService>();
-
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+  final _navigationService = locator<NavigationService>();
 
   final Task? task;
 
+  late TextEditingController titleController;
+  late TextEditingController descriptionController;
+
   TaskFormsViewModel(this.task) {
-    if (task != null) {
-      titleController.text = task!.title;
-      descriptionController.text = task!.description;
-    }
+    titleController = TextEditingController(text: task?.title ?? '');
+    descriptionController =
+        TextEditingController(text: task?.description ?? '');
   }
 
   void saveTask() {
-    if (titleController.text.isEmpty || descriptionController.text.isEmpty) {
-      return;
-    }
+    final newTask = Task(
+      id: task?.id ?? const Uuid().v4(),
+      title: titleController.text,
+      description: descriptionController.text,
+      timestamp: DateTime.now(),
+      isCompleted: task?.isCompleted ?? false,
+    );
 
-    if (task == null) {
-      final newTask = Task(
-        title: titleController.text,
-        description: descriptionController.text,
-        timestamp: DateTime.now(),
-      );
-      _taskService.addTask(newTask);
-    } else {
-      task!.title = titleController.text;
-      task!.description = descriptionController.text;
-      _taskService.updateTask(task!);
-    }
+    _navigationService.back(result: newTask);
   }
 }
