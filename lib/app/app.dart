@@ -8,6 +8,7 @@ import 'package:task_manager_app/services/task_service.dart';
 import 'package:task_manager_app/services/notification_service.dart';
 import 'package:task_manager_app/ui/views/task_list/task_list_view.dart';
 import 'package:task_manager_app/ui/views/task_forms/task_forms_view.dart';
+import 'package:task_manager_app/ui/views/task_list/task_list_viewmodel.dart';
 // @stacked-import
 
 @StackedApp(
@@ -29,6 +30,8 @@ import 'package:task_manager_app/ui/views/task_forms/task_forms_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: TaskService),
     LazySingleton(classType: NotificationService),
+    LazySingleton(classType: TaskListViewModel),
+    LazySingleton(classType: SnackbarService),
 // @stacked-service
   ],
   bottomsheets: [

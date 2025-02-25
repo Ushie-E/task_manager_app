@@ -57,22 +57,18 @@ class StackedRouter extends _i1.RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i3.TaskListView(),
         settings: data,
-        transitionsBuilder: data.transition ??
-            (context, animation, secondaryAnimation, child) {
-              return child;
-            },
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
       );
     },
     _i4.TaskFormsView: (data) {
-      final args = data.getArgs<TaskFormsViewArguments>(nullOk: false);
+      final args = data.getArgs<TaskFormsViewArguments>(
+        orElse: () => const TaskFormsViewArguments(),
+      );
       return _i5.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            _i4.TaskFormsView(args.task, key: args.key),
+            _i4.TaskFormsView(key: args.key, task: args.task),
         settings: data,
-        transitionsBuilder: data.transition ??
-            (context, animation, secondaryAnimation, child) {
-              return child;
-            },
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
       );
     },
   };
@@ -86,28 +82,28 @@ class StackedRouter extends _i1.RouterBase {
 
 class TaskFormsViewArguments {
   const TaskFormsViewArguments({
-    required this.task,
     this.key,
+    this.task,
   });
-
-  final _i6.Task task;
 
   final _i5.Key? key;
 
+  final _i6.Task? task;
+
   @override
   String toString() {
-    return '{"task": "$task", "key": "$key"}';
+    return '{"key": "$key", "task": "$task"}';
   }
 
   @override
   bool operator ==(covariant TaskFormsViewArguments other) {
     if (identical(this, other)) return true;
-    return other.task == task && other.key == key;
+    return other.key == key && other.task == task;
   }
 
   @override
   int get hashCode {
-    return task.hashCode ^ key.hashCode;
+    return key.hashCode ^ task.hashCode;
   }
 }
 
@@ -141,8 +137,8 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }
 
   Future<dynamic> navigateToTaskFormsView({
-    required _i6.Task task,
     _i5.Key? key,
+    _i6.Task? task,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -150,7 +146,7 @@ extension NavigatorStateExtension on _i7.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.taskFormsView,
-        arguments: TaskFormsViewArguments(task: task, key: key),
+        arguments: TaskFormsViewArguments(key: key, task: task),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -186,8 +182,8 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }
 
   Future<dynamic> replaceWithTaskFormsView({
-    required _i6.Task task,
     _i5.Key? key,
+    _i6.Task? task,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -195,7 +191,7 @@ extension NavigatorStateExtension on _i7.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.taskFormsView,
-        arguments: TaskFormsViewArguments(task: task, key: key),
+        arguments: TaskFormsViewArguments(key: key, task: task),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
