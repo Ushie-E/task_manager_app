@@ -14,7 +14,7 @@ class TaskListView extends StackedView<TaskListViewModel> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Task List'),
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
         itemCount: viewModel.tasks.length,
