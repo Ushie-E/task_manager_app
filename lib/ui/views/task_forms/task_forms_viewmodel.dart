@@ -27,7 +27,6 @@ class TaskFormsViewModel extends BaseViewModel {
       timestamp: DateTime.now(),
       isCompleted: task?.isCompleted ?? false,
     );
-
     _navigationService.back(result: newTask);
   }
 }

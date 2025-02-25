@@ -38,7 +38,9 @@ class TaskListViewModel extends BaseViewModel {
       } else {
         tasks.add(result);
       }
-      showSuccessMessage('Task Added Successfully!');
+      showSuccessMessage(task != null
+          ? 'Task Updated Successfully!'
+          : 'Task Added Successfully!');
       rebuildUi();
     }
   }
