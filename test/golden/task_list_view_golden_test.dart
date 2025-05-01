@@ -8,7 +8,7 @@ void main() {
   setUpAll(() => setupLocator());
   tearDownAll(() => locator.reset());
 
-  testGoldens('HomeView - default state', (tester) async {
+  testGoldens('TaskListView - default state', (tester) async {
     await loadAppFonts();
 
     // Set device pixel ratio and size
